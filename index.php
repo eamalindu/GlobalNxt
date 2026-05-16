@@ -15,7 +15,7 @@
                 <form action="login.php" method="POST" class="small">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Username">
+                        <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
