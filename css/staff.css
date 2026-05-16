@@ -157,3 +157,45 @@ tbody tr:hover td { background: #fafafa; }
     font-size: 13px;
 }
 .empty-state svg { margin-bottom: 0.75rem; opacity: 0.3; }
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    /* Navbar */
+    .navbar {
+        padding: 0 1rem;
+    }
+    .nav-user { display: none; }
+
+    /* Dashboard padding */
+    .dash { padding: 1.25rem 1rem; }
+
+    /* Top bar */
+    .topbar { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .upload-btn { width: 100%; justify-content: center; }
+
+    /* Stats — 2 columns on tablet */
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* Table — hide submitted column */
+    thead th:last-child,
+    tbody td:last-child { display: none; }
+}
+
+@media (max-width: 480px) {
+
+    /* Stats — 2 columns still, smaller padding */
+    .stat-card { padding: 0.9rem 1rem; }
+    .stat-value { font-size: 22px; }
+
+    /* Section header */
+    .section-header { padding: 0.9rem 1rem; }
+    .section-meta { display: none; }
+
+    /* Table cells */
+    thead th { padding: 9px 1rem; }
+    tbody td { padding: 11px 1rem; }
+
+    /* Navbar brand */
+    .navbar-brand span { display: none; }
+}
