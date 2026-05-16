@@ -146,6 +146,8 @@ tbody tr:hover td { background: #fafafa; }
 .badge-approved { background: #d4edda; color: #1e6b3a; }
 .badge-rejected { background: #f8d7da; color: #911f2a; }
 .badge-review   { background: #d1ecf1; color: #0c5a6e; }
+.badge-programme { background: #ede9fe; color: #5b21b6; }
+
 
 .date { font-size: 12px; color: #bbb; }
 
@@ -158,44 +160,33 @@ tbody tr:hover td { background: #fafafa; }
 }
 .empty-state svg { margin-bottom: 0.75rem; opacity: 0.3; }
 
-/* Responsive */
 @media (max-width: 768px) {
-
-    /* Navbar */
-    .navbar {
-        padding: 0 1rem;
-    }
+    .navbar { padding: 0 1rem; }
     .nav-user { display: none; }
-
-    /* Dashboard padding */
     .dash { padding: 1.25rem 1rem; }
-
-    /* Top bar */
     .topbar { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .upload-btn { width: 100%; justify-content: center; }
 
-    /* Stats — 2 columns on tablet */
-    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* Fix stats grid */
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 
-    /* Table — hide submitted column */
+    /* Hide less important table columns on mobile */
+    thead th:nth-child(2),
+    tbody td:nth-child(2) { display: none; } /* hide Programme */
+
     thead th:last-child,
-    tbody td:last-child { display: none; }
+    tbody td:last-child { display: none; }   /* hide Submitted */
 }
 
 @media (max-width: 480px) {
-
-    /* Stats — 2 columns still, smaller padding */
     .stat-card { padding: 0.9rem 1rem; }
     .stat-value { font-size: 22px; }
-
-    /* Section header */
+    .stat-label { font-size: 10px; }
     .section-header { padding: 0.9rem 1rem; }
     .section-meta { display: none; }
-
-    /* Table cells */
-    thead th { padding: 9px 1rem; }
+    thead th { padding: 9px 1rem; font-size: 10px; }
     tbody td { padding: 11px 1rem; }
-
-    /* Navbar brand */
     .navbar-brand span { display: none; }
+    .doc-name { font-size: 12px; }
+    .doc-student { font-size: 11px; }
 }
