@@ -5,9 +5,23 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
     background: #c0c0c0;
     font-family: Raleway, sans-serif;
     color: #666;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    color: #EF5350!important;
+    font-size: 28px;
+}
+
+.btn-primary{
+    background-color: #EF5350!important;
+    border-color: #EF5350!important;
 }
