@@ -11,17 +11,18 @@ body{
     color: #666;
     height: 100vh;
 
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 h2{
-    color: #EF5350!important;
+    color: #000!important;
     font-size: 28px;
 }
 
 .btn-primary{
-    background-color: #EF5350!important;
-    border-color: #EF5350!important;
+    background-color: #000!important;
+    border-color: #000!important;
 }
