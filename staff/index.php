@@ -40,14 +40,13 @@ $submissions = $recent->fetchAll();
 $hour = (int)date('H');
 $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good evening');
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Dashboard — GlobalNxt</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/staff.css">
+    <?php include_once("../includes/header.php");
+    ?>
+    <title>User Login | GlobalNxt x Metropolitan College</title>
+    <link rel="stylesheet" href="/GlobalNxt/css/staff.css">
 </head>
 <body>
 
