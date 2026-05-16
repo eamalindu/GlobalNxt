@@ -12,6 +12,15 @@
             <div class="card-body">
                 <h2 class="fw-bold text-center mb-2">Welcome, User!</h2>
                 <p class="text-muted text-center">Please Log in</p>
+
+                <?php if (isset($_GET['error'])): ?>
+                    <?php if ($_GET['error'] === 'empty'): ?>
+                        <div class="alert alert-warning p-2 small"><i class="bi bi-exclamation-triangle-fill"></i> Please fill in all fields.</div>
+                    <?php elseif ($_GET['error'] === 'invalid'): ?>
+                        <div class="alert alert-danger p-2 small"><i class="bi bi-x-circle"></i> Invalid username or password.</div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
                 <form action="login.php" method="POST" class="small">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
@@ -33,7 +42,6 @@
         </div>
 
     </div>
-
     <?php include_once("includes/footer.php");
     ?>
 </body>
