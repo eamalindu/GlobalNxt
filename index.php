@@ -5,12 +5,11 @@
     ?>
     <title>User Login | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="css/login.css">
-
 </head>
 <body>
 
 
-<?php include_once("includes/footer.php");
-?>
+    <?php include_once("includes/footer.php");
+    ?>
 </body>
 </html>
