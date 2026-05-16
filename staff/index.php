@@ -28,7 +28,7 @@ $stats->execute([$userId]);
 $counts = $stats->fetch();
 
 $recent = $pdo->prepare("
-    SELECT id, student_name, document_name, status, created_at
+    SELECT id, student_name,programme_name, document_name, status, created_at
     FROM documents
     WHERE uploaded_by = ?
     ORDER BY created_at DESC
@@ -103,6 +103,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
             <thead>
             <tr>
                 <th>Document</th>
+                <th>Programme</th>
                 <th>Status</th>
                 <th>Submitted</th>
             </tr>
@@ -131,6 +132,9 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                         <td>
                             <div class="doc-name"><?= htmlspecialchars($row['document_name']) ?></div>
                             <div class="doc-student"><?= htmlspecialchars($row['student_name']) ?></div>
+                        </td>
+                        <td>
+                            <span class="badge badge-programme"><?= htmlspecialchars($row['programme_name']) ?></span>
                         </td>
                         <td>
                                 <span class="badge <?= $badges[$row['status']] ?? 'badge-pending' ?>">
