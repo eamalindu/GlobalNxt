@@ -31,7 +31,7 @@
                         <label for="email" class="form-label fw-medium">Username</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Enter your username" required>
+                            <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
                             <div class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
                     </div>
