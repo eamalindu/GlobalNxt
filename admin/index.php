@@ -374,6 +374,5 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
 
     </div>
 </div>
-
 </body>
 </html>
