@@ -1,10 +1,10 @@
 # GlobalNxt
 
-[![Last Commit](https://img.shields.io/github/last-commit/eamalindu/GlobalNxt)](https://github.com/eamalindu/GlobalNxt/commits)
-[![Top Language](https://img.shields.io/github/languages/top/eamalindu/GlobalNxt)](https://github.com/eamalindu/GlobalNxt)
-[![Repo Size](https://img.shields.io/github/repo-size/eamalindu/GlobalNxt)](https://github.com/eamalindu/GlobalNxt)
-[![Open Issues](https://img.shields.io/github/issues/eamalindu/GlobalNxt)](https://github.com/eamalindu/GlobalNxt/issues)
-[![Stars](https://img.shields.io/github/stars/eamalindu/GlobalNxt?style=social)](https://github.com/eamalindu/GlobalNxt/stargazers)
+![Private Repo](https://img.shields.io/badge/Repository-Private-red)
+![Version](https://img.shields.io/badge/version-1.0-blue)
+![Backend](https://img.shields.io/badge/backend-SpringBoot-success)
+![Frontend](https://img.shields.io/badge/frontend-HTML%2FCSS%2FJS-yellow)
+![Database](https://img.shields.io/badge/database-MySQL-orange)
 
 GlobalNxt is a PHP-based document review platform for academic workflows.  
 It supports role-based access for **staff** and **agents**, where staff upload student PDFs and agents review, approve, or reject submissions.
