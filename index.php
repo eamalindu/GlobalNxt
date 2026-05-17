@@ -31,7 +31,7 @@
                         <label for="email" class="form-label fw-medium">Username</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="text" class="form-control " id="username" name="username" placeholder="Enter your username" required>
+                            <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Enter your username" required>
                             <div class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="input-group mt-1">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control " id="password" name="password" placeholder="Enter your password" required minlength="4">
+                            <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Enter your password" required minlength="4">
                             <button class="btn btn-outline-dark" type="button" id="togglePassword" tabindex="-1">
                                 <i class="bi bi-eye" id="toggleIcon"></i>
                             </button>
