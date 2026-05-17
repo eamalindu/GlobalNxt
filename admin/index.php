@@ -69,6 +69,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     <div class="navbar-right">
         <div class="nav-links">
             <a href="index.php" class="nav-link active">Dashboard</a>
+            <a href="documents.php" class="nav-link">Documents</a>
             <a href="users.php" class="nav-link">Users</a>
             <a href="audit.php" class="nav-link">Audit log</a>
         </div>
@@ -117,7 +118,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
         <div class="section">
             <div class="section-header">
                 <span class="section-title">Recent documents</span>
-                <a href="../agent/index.php" class="section-link">View all →</a>
+                <a href="documents.php" class="section-link">View all →</a>
             </div>
             <table>
                 <thead>
