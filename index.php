@@ -4,6 +4,7 @@
     <?php include_once("includes/header.php");
     ?>
     <title>User Login | GlobalNxt x Metropolitan College</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
