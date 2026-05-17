@@ -18,9 +18,9 @@
 
                 <?php if (isset($_GET['error'])): ?>
                     <?php if ($_GET['error'] === 'empty'): ?>
-                        <div class="alert alert-warning p-2 small"><i class="bi bi-exclamation-triangle-fill"></i> Please fill in all fields.</div>
+                        <div class="alert alert-warning p-2 small mt-4"><i class="bi bi-exclamation-triangle-fill"></i> Please fill in all fields.</div>
                     <?php elseif ($_GET['error'] === 'invalid'): ?>
-                        <div class="alert alert-danger p-2 small"><i class="bi bi-x-circle"></i> Invalid username or password.</div>
+                        <div class="alert alert-danger p-2 small mt-4"><i class="bi bi-x-circle"></i> Invalid username or password.</div>
                     <?php endif; ?>
                 <?php endif; ?>
 
