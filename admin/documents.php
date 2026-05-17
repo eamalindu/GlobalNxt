@@ -83,7 +83,7 @@ $counts = $pdo->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documents — GlobalNxt Admin</title>
+    <title>Documents | GlobalNxt Admin</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
