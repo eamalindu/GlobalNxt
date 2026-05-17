@@ -160,6 +160,12 @@ tbody tr:hover td { background: #fafafa; }
 }
 .empty-state svg { margin-bottom: 0.75rem; opacity: 0.3; }
 
+
+.credits{
+    position: fixed;
+    bottom:5px;
+    width:100%;
+}
 @media (max-width: 768px) {
     .navbar { padding: 0 1rem; }
     .nav-user { display: none; }
