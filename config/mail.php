@@ -145,5 +145,3 @@ function sendWelcomeEmail(string $email, string $username, string $password): vo
         error_log("Email sending failed: {$e->getMessage()}");
     }
 }
-
-sendWelcomeEmail("eamalindu@gmail.com", "Malindu", "Test");
