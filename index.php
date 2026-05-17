@@ -54,7 +54,7 @@
                     </div>
 
                     <!-- Remember me -->
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
                             <label class="form-check-label small" for="rememberMe">Remember me</label>
@@ -69,8 +69,7 @@
 
                     <!-- Register link -->
                     <p class="text-center text-muted small mb-0">
-                        Don't have an account?
-                        <a href="" class="text-dark fw-medium text-decoration-none">Create one</a>
+                        Document Verification Platform
                     </p>
 
                 </form>
