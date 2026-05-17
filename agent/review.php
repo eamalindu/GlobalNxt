@@ -86,7 +86,7 @@ $isReviewed = in_array($doc['status'], ['approved', 'rejected']);
 <body>
 
 <nav class="navbar">
-    <a href="index.php" class="navbar-brand">GlobalNxt <span>/ Agent</span></a>
+    <a href="index.php" class="navbar-brand">Document Verification <span>/ Agent</span></a>
     <div class="navbar-right">
         <span class="nav-user"><?= htmlspecialchars($_SESSION['username']) ?></span>
         <a href="../logout.php" class="nav-logout">Log out</a>
