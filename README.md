@@ -2,7 +2,7 @@
 
 ![Private Repo](https://img.shields.io/badge/Repository-Private-red)
 ![Version](https://img.shields.io/badge/version-1.0-blue)
-![Backend](https://img.shields.io/badge/backend-SpringBoot-success)
+![Backend](https://img.shields.io/badge/backend-PHP-success)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%2FCSS%2FJS-yellow)
 ![Database](https://img.shields.io/badge/database-MySQL-orange)
 
