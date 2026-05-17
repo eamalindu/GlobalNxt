@@ -1,1 +1,1 @@
-<script src="/GlobalNxt/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>

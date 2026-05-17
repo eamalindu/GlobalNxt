@@ -11,7 +11,7 @@ body{
     color: #666;
     height: 100vh;
 
-    background: url("/GlobalNxt/images/dp.jpg") no-repeat center center fixed;
+    background: url("../images/dp.jpg") no-repeat center center fixed;
     background-size: cover;
 
     display: flex;

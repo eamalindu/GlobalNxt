@@ -46,7 +46,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     <?php include_once("../includes/header.php");
     ?>
     <title>User Login | GlobalNxt x Metropolitan College</title>
-    <link rel="stylesheet" href="/GlobalNxt/css/staff.css">
+    <link rel="stylesheet" href="../css/staff.css">
 </head>
 <body>
 
