@@ -9,10 +9,12 @@
 </head>
 <body>
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="card p-4 shadow border-0 rounded-3" style="width: 400px;">
-            <div class="card-body">
-                <h2 class="fw-bold text-center mb-2">Welcome, User!</h2>
-                <p class="text-muted text-center">Please Log in</p>
+        <div class="card shadow-sm border-0 rounded-3" style="width: 100%; max-width: 350px;">
+            <div class="card-body p-4 p-md-5">
+
+                <img src="images/logo_new.png" width="80%" class="d-block mx-auto" alt="logo">
+                <h4 class="fw-bold mb-1 mt-3 text-center">Welcome back</h4>
+                <p class="text-muted small mb-0 text-center">Login to your account</p>
 
                 <?php if (isset($_GET['error'])): ?>
                     <?php if ($_GET['error'] === 'empty'): ?>
@@ -22,28 +24,73 @@
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <form action="login.php" method="POST" class="small">
+                <form id="loginForm" method="POST" class="mt-4 small" action="login.php">
+
+                    <!-- Email -->
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Username" autocomplete="off">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="remember">
-                            <label class="form-check-label" for="remember">Remember Me</label>
+                        <label for="email" class="form-label fw-medium">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="text" class="form-control " id="username" name="username" placeholder="Enter your username" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-sm">Log in</button>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="password" class="form-label fw-medium mb-0">Password</label>
+                            <a href="" class="small text-dark text-decoration-none">Forgot
+                                password?</a>
+                        </div>
+                        <div class="input-group mt-1">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input type="password" class="form-control " id="password" name="password" placeholder="Enter your password" required minlength="4">
+                            <button class="btn btn-outline-dark" type="button" id="togglePassword" tabindex="-1">
+                                <i class="bi bi-eye" id="toggleIcon"></i>
+                            </button>
+                            <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                        </div>
+                    </div>
+
+                    <!-- Remember me -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Remember me</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-dark btn-sm btn fw-semibold">Log In</button>
+                    </div>
+
+
+                    <!-- Register link -->
+                    <p class="text-center text-muted small mb-0">
+                        Don't have an account?
+                        <a href="" class="text-dark fw-medium text-decoration-none">Create one</a>
+                    </p>
+
                 </form>
             </div>
         </div>
 
     </div>
-    <?php include_once("includes/footer.php");
-    ?>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const pwd = document.getElementById('password');
+            const icon = document.getElementById('toggleIcon');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
+            }
+        })
+    </script>
 </body>
 </html>
