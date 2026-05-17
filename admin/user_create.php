@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <nav class="navbar">
-    <a href="index.php" class="navbar-brand">GlobalNxt <span>/ Admin</span></a>
+    <a href="index.php" class="navbar-brand">Document Verification <span>/ Admin</span></a>
     <div class="navbar-right">
         <div class="nav-links">
             <a href="index.php" class="nav-link">Dashboard</a>

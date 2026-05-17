@@ -65,7 +65,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
 <body>
 
 <nav class="navbar">
-    <a href="index.php" class="navbar-brand">GlobalNxt <span>/ Admin</span></a>
+    <a href="index.php" class="navbar-brand">Document Verification <span>/ Admin</span></a>
     <div class="navbar-right">
         <div class="nav-links">
             <a href="index.php" class="nav-link active">Dashboard</a>
@@ -83,7 +83,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     <div class="topbar">
         <div class="topbar-left">
             <h2><?= $greeting ?>, <?= htmlspecialchars($_SESSION['username']) ?></h2>
-            <p>Administrator — GlobalNxt</p>
+            <p>Administrator</p>
         </div>
         <a href="user_create.php" class="btn-primary-dark">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
