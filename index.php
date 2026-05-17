@@ -45,7 +45,7 @@
                         </div>
                         <div class="input-group mt-1">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Enter your password" required minlength="4">
+                            <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Enter your password" required>
                             <button class="btn btn-outline-dark" type="button" id="togglePassword" tabindex="-1">
                                 <i class="bi bi-eye" id="toggleIcon"></i>
                             </button>
