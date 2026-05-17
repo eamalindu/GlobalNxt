@@ -130,7 +130,10 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                 </thead>
                 <tbody>
                 <?php if (empty($recent_docs)): ?>
-                    <tr><td colspan="3"><div class="empty-state">No documents yet.</div></td></tr>
+                    <tr><td colspan="3"><div class="empty-state">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                <p>No documents uploaded yet</p>
+                            </div></td></tr>
                 <?php else: ?>
                     <?php
                     $badges = [
@@ -166,7 +169,13 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                 <a href="audit.php" class="section-link">View all →</a>
             </div>
             <?php if (empty($recent_logs)): ?>
-                <div class="empty-state">No activity logged yet.</div>
+                <div class="empty-state">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <p>No activity logged yet</p>
+                    </div>
             <?php else: ?>
                 <?php foreach ($recent_logs as $log): ?>
                     <div class="log-item">
