@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Document — GlobalNxt</title>
+    <title>Upload Document | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -286,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <nav class="navbar">
-    <a href="index.php" class="navbar-brand">GlobalNxt <span>/ Staff</span></a>
+    <a href="index.php" class="navbar-brand">Document Verification <span>/ Staff</span></a>
     <div class="navbar-right">
         <span class="nav-user"><?= htmlspecialchars($_SESSION['username']) ?></span>
         <a href="../logout.php" class="nav-logout">Log out</a>
