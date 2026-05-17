@@ -33,6 +33,6 @@ h2{
 
 @media (max-width: 768px){
     body{
-        background: #c0c0c0;
+        background: linear-gradient(130deg, #e3ffe7 0%, #d9e7ff 100%);
     }
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="card p-4 shadow rounded-3" style="width: 400px;">
+        <div class="card p-4 shadow border-0 rounded-3" style="width: 400px;">
             <div class="card-body">
                 <h2 class="fw-bold text-center mb-2">Welcome, User!</h2>
                 <p class="text-muted text-center">Please Log in</p>
