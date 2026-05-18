@@ -12,6 +12,8 @@ if ($_SESSION['role'] !== 'staff') {
     exit;
 }
 
+$successMsg = $_GET['success'] ?? '';
+
 $pdo = getDB();
 $userId = $_SESSION['user_id'];
 
@@ -26,6 +28,7 @@ $stats = $pdo->prepare("
 ");
 $stats->execute([$userId]);
 $counts = $stats->fetch();
+
 
 $recent = $pdo->prepare("
    SELECT id, student_name, document_name, programme_name, status, remarks, created_at
@@ -75,6 +78,16 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
             Upload document
         </a>
     </div>
+
+    <?php if ($successMsg === 'reuploaded'): ?>
+        <div class="alert alert-success">Document re-uploaded successfully and is pending review.</div>
+    <?php endif; ?>
+
+    <?php if ($successMsg === 'already_reuploaded' || ($_GET['error'] ?? '') === 'already_reuploaded'): ?>
+        <div class="alert alert-error">
+            This document has already been re-uploaded and is awaiting review.
+        </div>
+    <?php endif; ?>
 
     <div class="stats">
         <div class="stat-card">

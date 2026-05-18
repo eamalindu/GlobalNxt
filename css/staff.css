@@ -180,6 +180,15 @@ tbody tr:hover td { background: #fafafa; }
 }
 .btn-reupload:hover { background: #fdf0f0; color: #911f2a; }
 
+.alert {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 1.25rem;
+}
+.alert-error { background: #fdf0f0; color: #911f2a; border: 0.5px solid #f5c6c8; }
+.alert-success { background: #f0faf4; color: #1e6b3a; border: 0.5px solid #b8dfc8; }
+
 @media (max-width: 768px) {
     .navbar { padding: 0 1rem; }
     .nav-user { display: none; }

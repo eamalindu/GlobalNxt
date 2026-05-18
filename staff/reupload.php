@@ -35,6 +35,18 @@ if (!$original) {
     exit;
 }
 
+// Check if this document has already been re-uploaded
+$reuploadCheck = $pdo->prepare("
+    SELECT id FROM documents WHERE parent_id = ? AND uploaded_by = ?
+");
+$reuploadCheck->execute([$id, $_SESSION['user_id']]);
+$alreadyReuploaded = $reuploadCheck->fetch();
+
+if ($alreadyReuploaded) {
+    header('Location: index.php?error=already_reuploaded');
+    exit;
+}
+
 $error   = null;
 $success = null;
 
