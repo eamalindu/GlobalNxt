@@ -28,11 +28,11 @@ $stats->execute([$userId]);
 $counts = $stats->fetch();
 
 $recent = $pdo->prepare("
-    SELECT id, student_name,programme_name, document_name, status, created_at
-    FROM documents
-    WHERE uploaded_by = ?
-    ORDER BY created_at DESC
-    LIMIT 10
+   SELECT id, student_name, document_name, programme_name, status, remarks, created_at
+FROM documents
+WHERE uploaded_by = ?
+ORDER BY created_at DESC
+LIMIT 10
 ");
 $recent->execute([$userId]);
 $submissions = $recent->fetchAll();
@@ -66,7 +66,8 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
             <p>Staff — Metropolitan College</p>
         </div>
         <a href="upload.php" class="upload-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="17 8 12 3 7 8"/>
                 <line x1="12" y1="3" x2="12" y2="15"/>
@@ -106,6 +107,8 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                 <th>Programme</th>
                 <th>Status</th>
                 <th>Submitted</th>
+                <th>Action</th>
+
             </tr>
             </thead>
             <tbody>
@@ -113,19 +116,18 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                 <tr>
                     <td colspan="4">
                         <div class="empty-state">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
                             <p>No documents uploaded yet</p>
                         </div>
                     </td>
                 </tr>
             <?php else: ?>
                 <?php
-                $badges = [
-                    'pending'      => 'badge-pending',
-                    'under_review' => 'badge-review',
-                    'approved'     => 'badge-approved',
-                    'rejected'     => 'badge-rejected',
-                ];
+                $badges = ['pending' => 'badge-pending', 'under_review' => 'badge-review', 'approved' => 'badge-approved', 'rejected' => 'badge-rejected',];
                 ?>
                 <?php foreach ($submissions as $row): ?>
                     <tr>
@@ -137,12 +139,24 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                             <span class="badge badge-programme"><?= htmlspecialchars($row['programme_name']) ?></span>
                         </td>
                         <td>
-                                <span class="badge <?= $badges[$row['status']] ?? 'badge-pending' ?>">
-                                    <?= ucfirst(str_replace('_', ' ', $row['status'])) ?>
-                                </span>
+                            <span class="badge <?= $badges[$row['status']] ?? 'badge-pending' ?>">
+                                <?= ucfirst(str_replace('_', ' ', $row['status'])) ?>
+                            </span>
+                            <?php if ($row['status'] === 'rejected' && !empty($row['remarks'])): ?>
+                                <div style="font-size:11px; color:#911f2a; margin-top:4px;">
+                                    <?= htmlspecialchars($row['remarks']) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <span class="date"><?= date('d M Y', strtotime($row['created_at'])) ?></span>
+                        </td>
+                        <td>
+                            <?php if ($row['status'] === 'rejected'): ?>
+                                <a href="reupload.php?id=<?= $row['id'] ?>" class="btn-reupload">Re-upload</a>
+                            <?php else: ?>
+                                <span style="font-size:12px; color:#bbb;">—</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -152,6 +166,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     </div>
 
 </div>
-<p class="text-center text-muted small mb-0 credits"><small>Developed & Maintained by the Metropolitan IT Department</small></p>
+<p class="text-center text-muted small mb-0 credits"><small>Developed & Maintained by the Metropolitan IT
+        Department</small></p>
 </body>
 </html>
