@@ -80,7 +80,7 @@ $actions = $pdo->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit Log — GlobalNxt Admin</title>
+    <title>Audit Log | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
