@@ -101,7 +101,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
             <div class="stat-label">Pending review</div>
             <div class="stat-value warn"><?= $stats['pending_docs'] ?></div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="window.location.href ='users.php'">
             <div class="stat-label">Active staff</div>
             <div class="stat-value info"><?= $stats['total_staff'] ?></div>
         </div>
