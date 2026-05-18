@@ -69,6 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $doc = $stmt->fetch();
 
             $success = 'Document has been ' . $action . ' successfully.';
+
+            // Audit log — document reviewed
+            $log = $pdo->prepare("
+    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
+    VALUES (?, ?, 'document', ?, ?, ?)
+");
+            $log->execute([
+                    $_SESSION['user_id'],
+                    'document_' . $action,
+                    $id,
+                    'Agent ' . $action . ' document: ' . $doc['document_name'] . ' for ' . $doc['student_name'],
+                    $_SERVER['REMOTE_ADDR']
+            ]);
         }
     }
 }

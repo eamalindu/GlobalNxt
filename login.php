@@ -25,6 +25,18 @@ if (!$user || !password_verify($password, $user['password'])) {
     exit;
 }
 
+// Audit log — login
+$log = $pdo->prepare("
+    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
+    VALUES (?, 'login', 'user', ?, ?, ?)
+");
+$log->execute([
+    $user['id'],
+    $user['id'],
+    'User logged in: ' . $user['username'],
+    $_SERVER['REMOTE_ADDR']
+]);
+
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['username'] = $user['username'];
 $_SESSION['role'] = $user['type'];

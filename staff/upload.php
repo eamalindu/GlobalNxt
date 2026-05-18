@@ -82,6 +82,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
 
                 $success = 'Document uploaded successfully.';
+
+                // Audit log — document uploaded
+                $docId = $pdo->lastInsertId();
+                $log   = $pdo->prepare("
+    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
+    VALUES (?, 'document_uploaded', 'document', ?, ?, ?)
+");
+                $log->execute([
+                        $_SESSION['user_id'],
+                        $docId,
+                        'Staff uploaded document: ' . $file['name'] . ' for ' . $studentName,
+                        $_SERVER['REMOTE_ADDR']
+                ]);
+
+
             } else {
                 $error = 'Failed to save the file. Please try again.';
             }
