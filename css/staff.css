@@ -166,6 +166,20 @@ tbody tr:hover td { background: #fafafa; }
     bottom:5px;
     width:100%;
 }
+.btn-reupload {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 0.5px solid #f5c6c8;
+    background: #fff;
+    color: #911f2a;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+.btn-reupload:hover { background: #fdf0f0; color: #911f2a; }
+
 @media (max-width: 768px) {
     .navbar { padding: 0 1rem; }
     .nav-user { display: none; }
