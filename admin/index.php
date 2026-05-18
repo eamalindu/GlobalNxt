@@ -73,7 +73,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
             <a href="users.php" class="nav-link">Users</a>
             <a href="audit.php" class="nav-link">Audit log</a>
         </div>
-        <span class="nav-user"><?= htmlspecialchars($_SESSION['username']) ?></span>
+        <span class="nav-user"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['username']) ?></span>
         <a href="../logout.php" class="nav-logout">Log out</a>
     </div>
 </nav>
