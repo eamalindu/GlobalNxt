@@ -145,3 +145,12 @@ function sendWelcomeEmail(string $email, string $username, string $password): vo
         error_log("Email sending failed: {$e->getMessage()}");
     }
 }
+
+function sendApprovedEmail():void{}
+
+
+function sendRejectedEmail():void{}
+
+
+function sendNewSubmissionEmail():void{}
+
