@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <nav class="navbar">
-    <a href="index.php" class="navbar-brand">GlobalNxt <span>/ Staff</span></a>
+    <a href="index.php" class="navbar-brand">Document Verification <span>/ Staff</span></a>
     <div class="navbar-right">
         <span class="nav-user"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['username']) ?></span>
         <a href="../logout.php" class="nav-logout">Log out</a>
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="page">
 
     <div class="page-header">
-        <a href="index.php">
+        <a href="index.php" class="text-decoration-underline">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             Back to dashboard
         </a>
