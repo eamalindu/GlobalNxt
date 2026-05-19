@@ -101,7 +101,7 @@ $isReviewed = in_array($doc['status'], ['approved', 'rejected']);
 <nav class="navbar">
     <a href="index.php" class="navbar-brand">Document Verification <span>/ Agent</span></a>
     <div class="navbar-right">
-        <span class="nav-user"><?= htmlspecialchars($_SESSION['username']) ?></span>
+        <span class="nav-user"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['username']) ?></span>
         <a href="../logout.php" class="nav-logout">Log out</a>
     </div>
 </nav>
