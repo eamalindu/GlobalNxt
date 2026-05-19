@@ -33,6 +33,7 @@ $recent = $pdo->query("
         d.document_name,
         d.status,
         d.created_at,
+        d.remarks,
         u.username as uploaded_by
     FROM documents d
     JOIN users u ON d.uploaded_by = u.id
@@ -134,9 +135,14 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                             <span class="badge badge-programme"><?= htmlspecialchars($row['programme_name']) ?></span>
                         </td>
                         <td>
-                                <span class="badge <?= $badges[$row['status']] ?? 'badge-pending' ?>">
-                                    <?= ucfirst(str_replace('_', ' ', $row['status'])) ?>
-                                </span>
+                            <span class="badge <?= $badges[$row['status']] ?? 'badge-pending' ?>">
+                                <?= ucfirst(str_replace('_', ' ', $row['status'])) ?>
+                            </span>
+                            <?php if ($row['status'] === 'rejected' && !empty($row['remarks'])): ?>
+                                <div style="font-size:11px; color:#911f2a; margin-top:4px;">
+                                    <?= htmlspecialchars($row['remarks']) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                         <td><span class="date"><?= htmlspecialchars($row['uploaded_by']) ?></span></td>
                         <td><span class="date"><?= date('d M Y', strtotime($row['created_at'])) ?></span></td>
