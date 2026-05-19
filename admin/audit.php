@@ -45,6 +45,23 @@ if (!empty($dateTo)) {
 
 $whereClause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
 
+// Pagination
+$perPage     = 20;
+$currentPage = max(1, (int)($_GET['page'] ?? 1));
+$offset      = ($currentPage - 1) * $perPage;
+
+// Total count for pagination
+$countStmt = $pdo->prepare("
+    SELECT COUNT(*) 
+    FROM audit_log a
+    JOIN users u ON a.user_id = u.id
+    $whereClause
+");
+$countStmt->execute($params);
+$totalEntries = (int)$countStmt->fetchColumn();
+$totalPages   = (int)ceil($totalEntries / $perPage);
+
+// Paginated results
 $logs = $pdo->prepare("
     SELECT
         a.id,
@@ -60,7 +77,7 @@ $logs = $pdo->prepare("
     JOIN users u ON a.user_id = u.id
     $whereClause
     ORDER BY a.created_at DESC
-    LIMIT 200
+    LIMIT $perPage OFFSET $offset
 ");
 $logs->execute($params);
 $entries = $logs->fetchAll();
@@ -142,7 +159,10 @@ $actions = $pdo->query("
     <div class="section">
         <div class="section-header">
             <span class="section-title">Activity</span>
-            <span class="section-meta"><?= count($entries) ?> entr<?= count($entries) !== 1 ? 'ies' : 'y' ?> found</span>
+            <span class="section-meta">
+        <?= $totalEntries ?> entr<?= $totalEntries !== 1 ? 'ies' : 'y' ?> —
+        page <?= $currentPage ?> of <?= max(1, $totalPages) ?>
+    </span>
         </div>
         <table>
             <thead>
@@ -193,6 +213,70 @@ $actions = $pdo->query("
             <?php endif; ?>
             </tbody>
         </table>
+        <?php if ($totalPages > 1): ?>
+            <?php
+            // Build query string preserving filters
+            $queryParams = array_filter([
+                    'user_id'   => $userFilter,
+                    'action'    => $actionFilter,
+                    'date_from' => $dateFrom,
+                    'date_to'   => $dateTo,
+            ]);
+            ?>
+            <div class="pagination">
+                <?php if ($currentPage > 1): ?>
+                    <a href="?<?= http_build_query(array_merge($queryParams, ['page' => $currentPage - 1])) ?>" class="page-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        Previous
+                    </a>
+                <?php else: ?>
+                    <span class="page-btn disabled">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Previous
+            </span>
+                <?php endif; ?>
+
+                <div class="page-numbers">
+                    <?php
+                    $start = max(1, $currentPage - 2);
+                    $end   = min($totalPages, $currentPage + 2);
+                    ?>
+                    <?php if ($start > 1): ?>
+                        <a href="?<?= http_build_query(array_merge($queryParams, ['page' => 1])) ?>" class="page-num">1</a>
+                        <?php if ($start > 2): ?>
+                            <span class="page-ellipsis">...</span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php for ($i = $start; $i <= $end; $i++): ?>
+                        <?php if ($i === $currentPage): ?>
+                            <span class="page-num active"><?= $i ?></span>
+                        <?php else: ?>
+                            <a href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>" class="page-num"><?= $i ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <?php if ($end < $totalPages): ?>
+                        <?php if ($end < $totalPages - 1): ?>
+                            <span class="page-ellipsis">...</span>
+                        <?php endif; ?>
+                        <a href="?<?= http_build_query(array_merge($queryParams, ['page' => $totalPages])) ?>" class="page-num"><?= $totalPages ?></a>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($currentPage < $totalPages): ?>
+                    <a href="?<?= http_build_query(array_merge($queryParams, ['page' => $currentPage + 1])) ?>" class="page-btn">
+                        Next
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                <?php else: ?>
+                    <span class="page-btn disabled">
+                Next
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
 
 </div>
