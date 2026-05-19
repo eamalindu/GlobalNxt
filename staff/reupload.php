@@ -132,9 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Re-upload Document | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <style>
+    <link rel="stylesheet" href="../css/reupload.css">
 
-    </style>
 </head>
 <body>
 
