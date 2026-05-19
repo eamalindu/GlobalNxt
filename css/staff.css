@@ -175,6 +175,24 @@ tbody tr:hover td { background: #fafafa; }
 }
 .btn-reupload:hover { background: #fdf0f0; color: #911f2a; }
 
+.btn-download-doc {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 0.5px solid #b8dfc8;
+    background: #fff;
+    color: #1e6b3a;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+.btn-download-doc:hover { background: #f0faf4; color: #1e6b3a; }
+
+
 .alert {
     padding: 10px 14px;
     border-radius: 8px;
