@@ -59,6 +59,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     ?>
     <title>Staff Dashboard | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/staff.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
 </head>
 <body>
 
@@ -197,7 +198,9 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     </div>
 
 </div>
+<button class="btn dark-mode btn-sm border rounded-circle"><i class="bi bi-moon-fill"></i></button>
 <p class="text-center text-muted small mb-0 credits"><small>Developed & Maintained by the Metropolitan IT
         Department</small></p>
+<script src="../js/dark-mode.js"></script>
 </body>
 </html>
