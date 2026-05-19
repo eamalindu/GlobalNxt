@@ -151,5 +151,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     </div>
 
 </div>
+<p class="text-center text-muted small mb-0 credits"><small>Developed & Maintained by the Metropolitan IT
+        Department</small></p>
 </body>
 </html>

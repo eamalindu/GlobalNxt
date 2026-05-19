@@ -150,6 +150,12 @@ tbody tr:hover td { background: #fafafa; }
     font-size: 13px;
 }
 
+.credits{
+    position: fixed;
+    bottom:5px;
+    width:100%;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .navbar { padding: 0 1rem; }
