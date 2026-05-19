@@ -31,11 +31,19 @@ $counts = $stats->fetch();
 
 
 $recent = $pdo->prepare("
-   SELECT id, student_name, document_name, programme_name, status, remarks, created_at
-FROM documents
-WHERE uploaded_by = ?
-ORDER BY created_at DESC
-LIMIT 10
+    SELECT 
+        d.id,
+        d.student_name,
+        d.document_name,
+        d.programme_name,
+        d.status,
+        d.remarks,
+        d.created_at,
+        (SELECT COUNT(*) FROM documents WHERE parent_id = d.id) as has_reupload
+    FROM documents d
+    WHERE uploaded_by = ?
+    ORDER BY d.created_at DESC
+    LIMIT 10
 ");
 $recent->execute([$userId]);
 $submissions = $recent->fetchAll();
@@ -48,7 +56,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
 <head>
     <?php include_once("../includes/header.php");
     ?>
-    <title>Staff Login | GlobalNxt x Metropolitan College</title>
+    <title>Staff Dashboard | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/staff.css">
 </head>
 <body>
@@ -166,7 +174,11 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
                         </td>
                         <td>
                             <?php if ($row['status'] === 'rejected'): ?>
-                                <a href="reupload.php?id=<?= $row['id'] ?>" class="btn-reupload">Re-upload</a>
+                                <?php if ($row['has_reupload']): ?>
+                                    <span style="font-size:12px; color:#bbb;">Re-uploaded</span>
+                                <?php else: ?>
+                                    <a href="reupload.php?id=<?= $row['id'] ?>" class="btn-reupload">Re-upload</a>
+                                <?php endif; ?>
                             <?php else: ?>
                                 <span style="font-size:12px; color:#bbb;">—</span>
                             <?php endif; ?>
