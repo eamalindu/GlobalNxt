@@ -13,8 +13,13 @@ if ($_SESSION['role'] !== 'staff') {
     exit;
 }
 
-$error = null;
+$error   = null;
 $success = null;
+
+// PRG — pick up success flag from redirect
+if (isset($_GET['success']) && $_GET['success'] === '1') {
+    $success = 'Document uploaded successfully.';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -70,25 +75,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
                 ");
                 $stmt->execute([
-                    $_SESSION['user_id'],
-                    $studentName,
-                    $studentId,
-                    $programmeName,
-                    $documentType,
-                    $file['name'],
-                    $relativePath,
-                    $fileHash,
-                    $notes
+                        $_SESSION['user_id'],
+                        $studentName,
+                        $studentId,
+                        $programmeName,
+                        $documentType,
+                        $file['name'],
+                        $relativePath,
+                        $fileHash,
+                        $notes
                 ]);
-
-                $success = 'Document uploaded successfully.';
 
                 // Audit log — document uploaded
                 $docId = $pdo->lastInsertId();
                 $log   = $pdo->prepare("
-    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
-    VALUES (?, 'document_uploaded', 'document', ?, ?, ?)
-");
+                    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
+                    VALUES (?, 'document_uploaded', 'document', ?, ?, ?)
+                ");
                 $log->execute([
                         $_SESSION['user_id'],
                         $docId,
@@ -96,6 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SERVER['REMOTE_ADDR']
                 ]);
 
+                // PRG — redirect to prevent duplicate submission on refresh
+                header('Location: upload.php?success=1');
+                exit;
 
             } else {
                 $error = 'Failed to save the file. Please try again.';
@@ -143,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <div class="card">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" id="frmUpload">
 
             <div class="section-label">Student information</div>
 
