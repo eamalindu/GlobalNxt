@@ -907,3 +907,120 @@ HTML;
     }
 
 }
+
+function sendPasswordResetEmail(string $email, string $username, string $resetUrl): void
+{
+    try {
+        $mail = getMailer();
+        $mail->addAddress($email, $username);
+        $mail->Subject = 'Reset your password — Document Verification Platform';
+
+        $mail->Body = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Your Password</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #f5f5f3;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrapper { max-width: 580px; margin: 40px auto; padding: 0 16px 40px; }
+        .header { text-align: center; padding: 32px 0 24px; }
+        .header .brand {
+            font-size: 13px;
+            font-weight: 500;
+            color: #888;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .card { background: #ffffff; border: 0.5px solid #e8e8e8; border-radius: 12px; overflow: hidden; }
+        .card-top { background: #1a1a1a; padding: 32px; text-align: center; }
+        .card-top h1 { font-size: 22px; font-weight: 500; color: #ffffff; margin-bottom: 6px; }
+        .card-top p  { font-size: 13px; color: #aaa; }
+        .card-body   { padding: 32px; }
+        .greeting    { font-size: 15px; font-weight: 500; color: #1a1a1a; margin-bottom: 12px; }
+        .text        { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; }
+        .btn {
+            display: block;
+            text-align: center;
+            background: #1a1a1a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 13px 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        .divider { height: 0.5px; background: #f0f0f0; margin: 24px 0; }
+        .note    { font-size: 12px; color: #aaa; line-height: 1.6; }
+        .expiry  {
+            background: #f5f5f3;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            padding: 24px 0 0;
+            font-size: 12px;
+            color: #bbb;
+            line-height: 1.7;
+        }
+        @media (max-width: 480px) {
+            .wrapper  { margin: 16px auto; }
+            .card-top { padding: 24px 20px; }
+            .card-body{ padding: 24px 20px; }
+            .card-top h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="brand">Document Verification Platform</div>
+    </div>
+    <div class="card">
+        <div class="card-top">
+            <h1>Reset your password</h1>
+            <p>We received a request to reset your password</p>
+        </div>
+        <div class="card-body">
+            <div class="greeting">Hi $username,</div>
+            <p class="text">
+                Click the button below to reset your password. 
+                This link is valid for 30 minutes and can only be used once.
+            </p>
+            <a href="$resetUrl" class="btn">Reset my password</a>
+            <div class="expiry">Link expires in 30 minutes</div>
+            <div class="divider"></div>
+            <p class="note">
+                If you did not request a password reset, you can safely ignore 
+                this email — your password will not be changed. Do not share 
+                this link with anyone.
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Document Verification Platform</p>
+        <p>Metropolitan College × GlobalNxt University</p>
+    </div>
+</div>
+</body>
+</html>
+
+HTML;
+        $mail->send();
+    } catch (Exception $e) {
+        error_log('Password reset email failed: ' . $e->getMessage());
+    }
+}
