@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (?, ?, ?)
             ")->execute([$user['id'], $token, $expiresAt]);
 
-            $resetUrl = APP_URL . '/reset_password.php?token=' . $token;
+            $resetUrl =  'https://10.20.30.156/reset_password.php?token=' . $token;
 
             sendPasswordResetEmail($email, $user['username'], $resetUrl);
         }
@@ -189,7 +189,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($success): ?>
             <div class="success-icon">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1e6b3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"/>
+                    <path d="M22 6L12 13L2 6"/>
                 </svg>
             </div>
             <div class="card-title" style="text-align:center;">Check your email</div>
@@ -197,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 If an account exists for that email address, we've sent a password reset link.
                 The link expires in 30 minutes.
             </p>
-            <a href="index.php" class="back-link">Back to login</a>
+            <a href="index.php" class="back-link text-decoration-underline mt-0">Back to login</a>
 
         <?php else: ?>
             <div class="card-title">Forgot your password?</div>
