@@ -204,8 +204,8 @@ body {
     font-size: 13px;
     margin-top: 1.25rem;
 }
-.reviewed-banner.approved { background: #f0faf4; color: #1e6b3a; border: 0.5px solid #b8dfc8; }
-.reviewed-banner.rejected { background: #fdf0f0; color: #911f2a; border: 0.5px solid #f5c6c8; }
+.reviewed-banner.approved { background: #f0faf4; color: #1e6b3a; border: 0.5px solid #b8dfc8;margin-top: 0 }
+.reviewed-banner.rejected { background: #fdf0f0; color: #911f2a; border: 0.5px solid #f5c6c8;margin-top: 0 }
 .reviewed-banner p { margin-top: 5px; font-size: 12px; opacity: 0.8; }
 
 /* Alerts */
