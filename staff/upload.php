@@ -2,6 +2,7 @@
 require_once '../config/app.php';
 require_once '../config/db.php';
 require_once '../config/constants.php';
+require_once '../config/mail.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
@@ -86,6 +87,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $notes
                 ]);
 
+                //send email
+                // Notify all agents
+                $agents = $pdo->query("SELECT email, username FROM users WHERE type = 'agent' AND status = 'active'")->fetchAll();
+
+                $submittedDate = date('d M Y, h:i A');
+
+                foreach ($agents as $agent) {
+                    sendNewSubmissionEmail(
+                            $agent['username'],
+                            $agent['email'],
+                            $_SESSION['username'],
+                            $studentName,
+                            $programmeName,
+                            $submittedDate
+                    );
+                }
+
                 // Audit log — document uploaded
                 $docId = $pdo->lastInsertId();
                 $log   = $pdo->prepare("
@@ -98,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'Staff uploaded document: ' . $file['name'] . ' for ' . $studentName,
                         $_SERVER['REMOTE_ADDR']
                 ]);
+
+
 
                 // PRG — redirect to prevent duplicate submission on refresh
                 header('Location: upload.php?success=1');
