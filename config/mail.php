@@ -461,7 +461,7 @@ function sendRejectedEmail(string $name, string $email, string $agentName, strin
     try {
         $mail = getMailer();
         $mail->addAddress($email, $name);
-        $mail->Subject = 'New document submitted';
+        $mail->Subject = 'Document rejected';
 
         // ── HTML body ──────────────────────────────────────────────────
         $mail->Body = <<<HTML
@@ -643,20 +643,20 @@ function sendRejectedEmail(string $name, string $email, string $agentName, strin
             <div class="info-box">
                 <div class="info-box-title">Document details</div>
                 <div class="info-row">
-                    <span class="info-label">Student name</span>
+                    <span class="info-label">Student name :&nbsp;</span>
                     <span class="info-value">{$studentName}</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">Programme</span>
+                    <span class="info-label">Programme :&nbsp;</span>
                     <span class="info-value">{$programme}</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">Reviewed by</span>
+                    <span class="info-label">Reviewed by :&nbsp;</span>
                     <span class="info-value">{$agentName}</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">Reviewed on</span>
-                    <span class="info-value">{$date}}</span>
+                    <span class="info-label">Reviewed on :&nbsp;</span>
+                    <span class="info-value">{$date}</span>
                 </div>
             </div>
 
@@ -909,3 +909,5 @@ HTML;
     }
 
 }
+
+sendRejectedEmail("Kasun","eamalindu@gmail.com","Agent","Sanithu Malhiru","DBA","2026-05-24","Qualification not enough");
