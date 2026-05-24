@@ -51,6 +51,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 17 ? 'Good afternoon' : 'Good
     ?>
     <title>Agent Login | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/agent.css">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
 </head>
 <body>
 

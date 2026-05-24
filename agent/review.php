@@ -95,6 +95,7 @@ $isReviewed = in_array($doc['status'], ['approved', 'rejected']);
     ?>
     <title>Review Document | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/review.css">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
 </head>
 <body>
 
