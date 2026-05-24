@@ -958,6 +958,12 @@ function sendPasswordResetEmail(string $email, string $username, string $resetUr
             border-radius: 8px;
             margin-bottom: 24px;
         }
+        a{
+         color: #ffffff;
+        }
+        a:visited{
+        color: #ffffff;
+        }
         .divider { height: 0.5px; background: #f0f0f0; margin: 24px 0; }
         .note    { font-size: 12px; color: #aaa; line-height: 1.6; }
         .expiry  {
