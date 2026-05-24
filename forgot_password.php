@@ -70,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             overflow-x: hidden;
 
-            background: #f5f5f3;
 
         }
 
@@ -81,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .brand {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         .brand h1 {
             font-size: 16px;
@@ -179,14 +178,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container">
+    <div class="card">
     <img src="images/logo_new.png" width="60%" class="d-block mx-auto mb-4" alt="logo">
     <div class="brand">
         <h1>Document Verification Platform</h1>
         <p>Metropolitan College × GlobalNxt University</p>
     </div>
-
-    <div class="card">
-
         <?php if ($success): ?>
             <div class="success-icon">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1e6b3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
