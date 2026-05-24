@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (?, ?, ?)
             ")->execute([$user['id'], $token, $expiresAt]);
 
-            $resetUrl =  'https://10.20.30.156/reset_password.php?token=' . $token;
+            $resetUrl =  'http://10.20.30.156/globalnxt/reset_password.php?token=' . $token;
 
             sendPasswordResetEmail($email, $user['username'], $resetUrl);
         }
