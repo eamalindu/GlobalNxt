@@ -169,10 +169,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-align: center;
             margin-top: 1.25rem;
             font-size: 12px;
-            color: #aaa;
+            color: #aaa!important;
             text-decoration: none;
         }
-        .back-link:hover { color: #555; }
+        .back-link:hover { color: #555!important; }
     </style>
 </head>
 <body>
