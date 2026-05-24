@@ -41,7 +41,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <label for="password" class="form-label fw-medium mb-0">Password</label>
-                            <a href="" class="small text-dark text-decoration-none">Forgot
+                            <a href="forgot_password.php" class="small text-dark text-decoration-none">Forgot
                                 password?</a>
                         </div>
                         <div class="input-group mt-1">
