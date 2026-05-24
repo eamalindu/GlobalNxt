@@ -238,13 +238,14 @@ $isReviewed = in_array($doc['status'], ['approved', 'rejected']);
                         </div>
                     <?php else: ?>
                         <form method="POST">
+                            <input type="hidden" name="action" id="actionInput" value="">
                             <div class="form-group">
                                 <label>Remarks <span style="color:#bbb;font-weight:400">(required for rejection)</span></label>
                                 <textarea name="remarks" placeholder="Add remarks or reason for rejection..."><?= htmlspecialchars($_POST['remarks'] ?? '') ?></textarea>
                             </div>
                             <div class="action-buttons">
-                                <button type="submit" name="action" value="approved" class="btn-approve">Approve</button>
-                                <button type="submit" name="action" value="rejected" class="btn-reject">Reject</button>
+                                <button type="submit" onclick="setAction('approved')" class="btn-approve">Approve</button>
+                                <button type="submit" onclick="setAction('rejected')" class="btn-reject">Reject</button>
                             </div>
                         </form>
                     <?php endif; ?>
@@ -254,6 +255,30 @@ $isReviewed = in_array($doc['status'], ['approved', 'rejected']);
         </div>
     </div>
 </div>
+<script>
+    function setAction(action) {
+        document.getElementById('actionInput').value = action;
+    }
 
+    document.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            if (!this.checkValidity()) {
+                return;
+            }
+
+            let clickedBtn = document.activeElement;
+
+            this.querySelectorAll('button[type="submit"]').forEach(b => {
+                b.disabled = true;
+                b.style.opacity = '0.5';
+                b.style.cursor = 'not-allowed';
+            });
+
+            if (clickedBtn && clickedBtn.type === 'submit') {
+                clickedBtn.textContent = 'Please wait...';
+            }
+        });
+    });
+</script>
 </body>
 </html>
