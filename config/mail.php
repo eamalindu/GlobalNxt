@@ -909,5 +909,3 @@ HTML;
     }
 
 }
-
-sendRejectedEmail("Kasun","eamalindu@gmail.com","Agent","Sanithu Malhiru","DBA","2026-05-24","Qualification not enough");
