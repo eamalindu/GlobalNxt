@@ -32,7 +32,7 @@ function getMailer(): PHPMailer
     return $mail;
 }
 
-function sendWelcomeEmail(string $email, string $username, string $password,string $role): void
+function sendWelcomeEmail(string $email, string $username, string $password, string $role): void
 {
     try {
         $mail = getMailer();
@@ -253,9 +253,217 @@ function sendRejectedEmail(): void
 }
 
 
-function sendNewSubmissionEmail(): void
+function sendNewSubmissionEmail(string $name, string $email, string $staffName, string $studentName, string $programme, string $date): void
 {
+    try {
+        $mail = getMailer();
+        $mail->addAddress($email, $name);
+        $mail->Subject = 'New document submitted';
+
+        // ── HTML body ──────────────────────────────────────────────────
+        $mail->Body = <<<HTML
+            <!-- 2. NEW DOCUMENT SUBMISSION (for agent) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Document Submission</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #f5f5f3;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrapper {
+            max-width: 580px;
+            margin: 40px auto;
+            padding: 0 16px 40px;
+        }
+        .header {
+            text-align: center;
+            padding: 32px 0 24px;
+        }
+        .header .brand {
+            font-size: 13px;
+            font-weight: 500;
+            color: #888;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .card {
+            background: #ffffff;
+            border: 0.5px solid #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .card-top {
+            background: #1a1a1a;
+            padding: 32px;
+            text-align: center;
+        }
+        .card-top h1 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        .card-top p { font-size: 13px; color: #aaa; }
+        .card-body { padding: 32px; }
+        .greeting {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .status-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 12px;
+            border-radius: 100px;
+            background: #fef3cd;
+            color: #a07000;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #f5f5f3;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+        .info-box-title {
+            font-size: 11px;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 0.5px solid #efefef;
+            font-size: 13px;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #aaa; }
+        .info-value { font-weight: 500; color: #1a1a1a; }
+        .btn {
+            display: block;
+            text-align: center;
+            background: #1a1a1a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 13px 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        .divider {
+            height: 0.5px;
+            background: #f0f0f0;
+            margin: 24px 0;
+        }
+        .note { font-size: 12px; color: #aaa; line-height: 1.6; }
+        .footer {
+            text-align: center;
+            padding: 24px 0 0;
+            font-size: 12px;
+            color: #bbb;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 480px) {
+            .wrapper { margin: 16px auto; }
+            .card-top { padding: 24px 20px; }
+            .card-body { padding: 24px 20px; }
+            .card-top h1 { font-size: 18px; }
+            .info-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="header">
+        <div class="brand">Document Verification Platform</div>
+    </div>
+
+    <div class="card">
+        <div class="card-top">
+            <h1>New document submitted</h1>
+            <p>A document is awaiting your review</p>
+        </div>
+        <div class="card-body">
+            <div class="greeting">Hi $name,</div>
+            <p class="text">
+                A new student document has been submitted by 
+                <strong>$staffName</strong> from Metropolitan College 
+                and is pending your review.
+            </p>
+
+            <div class="status-pill">Pending review</div>
+
+            <div class="info-box">
+                <div class="info-box-title">Student information</div>
+                <div class="info-row">
+                    <span class="info-label">Student name :&nbsp;</span>
+                    <span class="info-value">$studentName</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Programme :&nbsp;</span>
+                    <span class="info-value">$programme</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Submitted by :&nbsp;</span>
+                    <span class="info-value">$staffName</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Submitted on :&nbsp;</span>
+                    <span class="info-value">$date</span>
+                </div>
+            </div>
+
+            <a href="{{review_url}}" class="btn">Review document</a>
+
+            <div class="divider"></div>
+
+            <p class="note">
+                Please log in to the platform to preview and review the document. 
+                This is an automated notification — do not reply to this email.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Document Verification Platform</p>
+        <p>Metropolitan College × GlobalNxt University</p>
+    </div>
+
+</div>
+</body>
+</html>
+            
+HTML;
+        $mail->send();
+        echo "New Document submission email sent to {$email}";
+
+    } catch (Exception $e) {
+        error_log("Email sending failed: {$e->getMessage()}");
+    }
+
 }
 
-
-sendWelcomeEmail("eamalindu@gmail.com","DevMalindu","123456","Admin");
+sendNewSubmissionEmail("Agent","eamalindu@gmail.com","Kasun","Sanithu Malhiru","DBA","2026-05-24");
