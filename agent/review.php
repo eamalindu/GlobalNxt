@@ -1,6 +1,7 @@
 <?php
 require_once '../config/app.php';
 require_once '../config/db.php';
+require_once '../config/mail.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
@@ -69,6 +70,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $doc = $stmt->fetch();
 
             $success = 'Document has been ' . $action . ' successfully.';
+
+            // Fetch staff email for notification
+            $staffQuery = $pdo->prepare("SELECT u.email, u.username FROM users u WHERE u.id = ?");
+            $staffQuery->execute([$doc['uploaded_by']]);
+            $staffUser = $staffQuery->fetch();
+
+            $reviewedDate = date('d M Y, h:i A');
+
+            if ($action === 'approved') {
+                sendApprovedEmail(
+                        $staffUser['username'],
+                        $staffUser['email'],
+                        $_SESSION['username'],
+                        $doc['student_name'],
+                        $doc['programme_name'],
+                        $reviewedDate
+                );
+            } else {
+                sendRejectedEmail(
+                        $staffUser['username'],
+                        $staffUser['email'],
+                        $_SESSION['username'],
+                        $doc['student_name'],
+                        $doc['programme_name'],
+                        $reviewedDate,
+                        $remarks
+                );
+            }
 
             // Audit log — document reviewed
             $log = $pdo->prepare("
