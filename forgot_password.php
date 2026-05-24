@@ -222,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn-submit" id="submitBtn">Send reset link</button>
             </form>
 
-            <a href="index.php" class="back-link text-decoration-underline">Back to login</a>
+            <a href="index.php" class="back-link text-decoration-underline text-white">Back to login</a>
         <?php endif; ?>
 
     </div>
