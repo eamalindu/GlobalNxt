@@ -32,6 +32,8 @@ function getMailer(): PHPMailer
     return $mail;
 }
 
+//todo: remove example.com domain from href and add real url
+
 function sendWelcomeEmail(string $email, string $username, string $password, string $role): void
 {
     try {
@@ -202,7 +204,7 @@ function sendWelcomeEmail(string $email, string $username, string $password, str
                 </div>
             </div>
 
-            <a href="{{login_url}}" class="btn">Log in to your account</a>
+            <a href="https://example.com/" class="btn">Log in to your account</a>
 
             <div class="divider"></div>
 
@@ -425,7 +427,7 @@ function sendApprovedEmail(string $name,string $email,string $agentName,string $
                 </div>
             </div>
 
-            <a href="{{dashboard_url}}" class="btn">View on dashboard</a>
+            <a href="https://example.com/" class="btn">View on dashboard</a>
 
             <div class="divider"></div>
 
@@ -663,7 +665,7 @@ function sendRejectedEmail(string $name, string $email, string $agentName, strin
                 <div class="reason-text">{$reason}</div>
             </div>
 
-            <a href="{{reupload_url}}" class="btn">Re-upload document</a>
+            <a href="https://example.com/" class="btn">Re-upload document</a>
 
             <div class="divider"></div>
 
@@ -877,7 +879,7 @@ function sendNewSubmissionEmail(string $name, string $email, string $staffName, 
                 </div>
             </div>
 
-            <a href="{{review_url}}" class="btn">Review document</a>
+            <a href="https://example.com/" class="btn">Review document</a>
 
             <div class="divider"></div>
 
