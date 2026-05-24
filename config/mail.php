@@ -236,7 +236,6 @@ HTML;
         TEXT;
 
         $mail->send();
-        echo "Welcome email sent to {$email}";
 
     } catch (Exception $e) {
         error_log("Email sending failed: {$e->getMessage()}");
@@ -448,7 +447,6 @@ function sendApprovedEmail(string $name,string $email,string $agentName,string $
             
 HTML;
         $mail->send();
-        echo "New Approved email sent to {$email}";
 
     } catch (Exception $e) {
         error_log("Email sending failed: {$e->getMessage()}");
@@ -688,7 +686,6 @@ function sendRejectedEmail(string $name, string $email, string $agentName, strin
 
 HTML;
         $mail->send();
-        echo "New Document submission email sent to {$email}";
     }
     catch (Exception $e) {
         error_log("Email sending failed: {$e->getMessage()}");
@@ -902,7 +899,6 @@ function sendNewSubmissionEmail(string $name, string $email, string $staffName, 
             
 HTML;
         $mail->send();
-        echo "New Document submission email sent to {$email}";
 
     } catch (Exception $e) {
         error_log("Email sending failed: {$e->getMessage()}");
