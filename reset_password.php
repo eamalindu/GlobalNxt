@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $reset) {
             justify-content: center;
             overflow-x: hidden;
 
-            background: #f5f5f3;
+
         }
 
         .container {
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $reset) {
 
         .brand {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         .brand h1 { font-size: 16px; font-weight: 500; color: #1a1a1a; }
         .brand p   { font-size: 12px; color: #aaa; margin-top: 4px; }
@@ -202,13 +202,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $reset) {
 <body>
 
 <div class="container">
+    <div class="card">
     <img src="images/logo_new.png" width="60%" class="d-block mx-auto mb-4" alt="logo">
     <div class="brand">
         <h1>Document Verification Platform</h1>
         <p>Metropolitan College × GlobalNxt University</p>
     </div>
-
-    <div class="card">
 
         <?php if ($error === 'invalid'): ?>
             <div class="invalid-box">
@@ -254,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $reset) {
                 <button type="submit" class="btn-submit" id="submitBtn">Update password</button>
             </form>
 
-            <a href="index.php" class="back-link">Back to login</a>
+            <a href="index.php" class="back-link text-decoration-underline">Back to login</a>
         <?php endif; ?>
 
     </div>
