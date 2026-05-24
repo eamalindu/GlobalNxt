@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Reset Password | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/user-reset.css">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
     <style>
 
     </style>

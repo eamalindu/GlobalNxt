@@ -71,6 +71,7 @@ $counts = $pdo->query("
     <title>Users | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/users.css">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
 </head>
 <body>
 

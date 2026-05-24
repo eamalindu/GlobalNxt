@@ -100,6 +100,7 @@ $actions = $pdo->query("
     <title>Audit Log | GlobalNxt x Metropolitan College</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/audits.css">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
 </head>
 <body>
 
