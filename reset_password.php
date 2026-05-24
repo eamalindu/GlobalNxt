@@ -55,6 +55,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $reset) {
             UPDATE password_resets SET used = 1 WHERE token = ?
         ")->execute([$token]);
 
+        // Audit log — password reset via email
+        $pdo->prepare("
+    INSERT INTO audit_log (user_id, action, target_type, target_id, description, ip_address)
+    VALUES (?, 'password_reset', 'user', ?, ?, ?)
+")->execute([
+            $reset['user_id'],
+            $reset['user_id'],
+            'User reset their own password via email link: ' . $reset['username'],
+            $_SERVER['REMOTE_ADDR']
+        ]);
+
         $done = true;
     }
 }
