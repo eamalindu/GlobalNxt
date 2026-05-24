@@ -1,6 +1,7 @@
 <?php
 require_once '../config/app.php';
 require_once '../config/db.php';
+require_once '../config/mail.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
@@ -56,6 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$username, $email, $hashed, $type]);
 
             $newUserId = $pdo->lastInsertId();
+
+            //send email
+            sendWelcomeEmail(
+                    $email,
+                    $username,
+                    $password,
+                    $type
+            );
 
             // Audit log
             $log = $pdo->prepare("
