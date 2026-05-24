@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-actions">
                 <a href="index.php" class="btn-cancel">Cancel</a>
-                <button type="submit" class="btn-submit">Submit document</button>
+                <button type="submit" class="btn-submit" onclick="handleSubmit(this)">Submit document</button>
             </div>
 
         </form>
@@ -245,6 +245,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             fileName.textContent = '';
             drop.classList.remove('has-file');
+        }
+    });
+</script>
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        // Check native form validity first
+        if (!this.checkValidity()) {
+            return; // Let browser show validation errors, don't disable
+        }
+
+        // Form is valid — now disable buttons
+        this.querySelectorAll('button[type="submit"]').forEach(b => {
+            b.disabled = true;
+            b.style.opacity = '0.5';
+            b.style.cursor  = 'not-allowed';
+        });
+
+        // Show loading on the clicked button
+        // Find which button was clicked
+        const active = document.activeElement;
+        if (active && active.type === 'submit') {
+            active.textContent = 'Please wait...';
         }
     });
 </script>
