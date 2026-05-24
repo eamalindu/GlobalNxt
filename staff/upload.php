@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" name="student_name" value="<?= htmlspecialchars($_POST['student_name'] ?? '') ?>" placeholder="Full name" required>
                 </div>
                 <div class="form-group">
-                    <label>Student ID <span style="color:#c00">*</span></label>
+                    <label>Student NIC/Passport No. <span style="color:#c00">*</span></label>
                     <input type="text" name="student_id" value="<?= htmlspecialchars($_POST['student_id'] ?? '') ?>" placeholder="e.g. MC2024001" required>
                 </div>
             </div>

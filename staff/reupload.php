@@ -177,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="info-item-value"><?= htmlspecialchars($original['student_name']) ?></div>
             </div>
             <div>
-                <div class="info-item-label">Student ID</div>
+                <div class="info-item-label">Student NIC/Passport No.</div>
                 <div class="info-item-value"><?= htmlspecialchars($original['student_id']) ?></div>
             </div>
             <div>
