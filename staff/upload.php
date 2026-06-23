@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
 
             // Generate unique filename
+            // Generate unique filename
             $ext          = 'pdf';
             $uniqueName   = uniqid('doc_', true) . '.' . $ext;
             $yearMonth    = date('Y/m');
@@ -64,10 +65,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mkdir($uploadDir, 0755, true);
             }
 
-            // Generate SHA-256 hash
-            $fileHash = hash_file('sha256', $file['tmp_name']);
+            // Move uploaded file to a temp location first so we can compress it
+            $tempPath = $uploadDir . 'tmp_' . $uniqueName;
 
-            if (move_uploaded_file($file['tmp_name'], $filePath)) {
+            if (move_uploaded_file($file['tmp_name'], $tempPath)) {
+
+                $originalSize = filesize($tempPath);
+
+                // Compress via Ghostscript
+                $cmd = sprintf(
+                        '/bin/gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook ' .
+                        '-dNOPAUSE -dQUIET -dBATCH -sOutputFile=%s %s 2>&1',
+                        escapeshellarg($filePath),
+                        escapeshellarg($tempPath)
+                );
+
+                exec($cmd, $gsOutput, $returnCode);
+
+                $gsSucceeded = ($returnCode === 0 && file_exists($filePath) && filesize($filePath) > 0);
+
+                if ($gsSucceeded) {
+                    $compressedSize = filesize($filePath);
+
+                    if ($compressedSize < $originalSize) {
+                        unlink($tempPath);
+                        error_log(sprintf(
+                                'PDF compressed: %s -> %s bytes (%.1f%% reduction) [%s]',
+                                $originalSize, $compressedSize,
+                                (1 - $compressedSize / $originalSize) * 100,
+                                $uniqueName
+                        ));
+                    } else {
+                        unlink($filePath);
+                        rename($tempPath, $filePath);
+                        error_log(sprintf(
+                                'PDF compression skipped (no size benefit): original %s bytes, gs output %s bytes [%s]',
+                                $originalSize, $compressedSize, $uniqueName
+                        ));
+                    }
+                } else {
+                    error_log('Ghostscript compression failed for ' . $uniqueName . ': ' . implode(' | ', $gsOutput));
+                    rename($tempPath, $filePath);
+                }
+
+                $fileHash = hash_file('sha256', $filePath);
+                $fileSize = filesize($filePath);
+
                 $pdo  = getDB();
                 $stmt = $pdo->prepare("
                     INSERT INTO documents 
