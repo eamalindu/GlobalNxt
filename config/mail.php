@@ -25,7 +25,7 @@ function getMailer(): PHPMailer
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = MAIL_PORT;
 
-    $mail->setFrom('no-reply@metropolitancollege.lk', 'Metropolitan College');
+    $mail->setFrom('notification@metropolitancollege.edu.lk', 'Metropolitan College');
     $mail->isHTML(true);
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
 
